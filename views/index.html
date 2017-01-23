@@ -1,0 +1,1235 @@
+
+<!DOCTYPE HTML> 
+
+<html lang="en-US">
+
+<head>
+
+  <style>
+  
+  /*
+    ********** Crear/importar iconos y agregar estilo a ciertos elementos **********
+  */
+
+  tr {
+    border-bottom: 2px solid lightgray;
+  }
+
+  .ui-icon-loading:after {
+    background-image: url("images/loadIcon.svg");
+  }
+
+  .ui-icon-pc:after {
+    background-image: url("images/desktop-monitor.svg");
+  }
+
+  .ui-icon-projector:after {
+    background-image: url("images/projector.svg");
+  }
+
+  .ui-icon-folder:after {
+    background-image: url("images/folder.svg");
+  }
+
+  .ui-icon-upload:after {
+    background-image: url("images/upload.svg");
+  }
+
+  .ui-icon-download-interface-symbol:after {
+    background-image: url("images/download-interface-symbol.svg");
+  }
+
+  .ui-icon-download:after {
+    background-image: url("images/download.svg");
+  }
+
+  .ui-icon-fileDelete:after {
+    background-image: url("images/fileDelete.svg");
+  }
+
+  .ui-icon-power-button-sign:after {
+    background-image: url("images/power-button-sign.svg");
+    background-position: center;
+    background-color: #82a43a;
+  }
+
+  .ui-icon-power-button-sign2:after {
+    background-image: url("images/power-button-sign2.svg");
+  }
+
+  .iconleft {
+    position: absolute;
+    top: 40%;
+    margin-top: -8px;
+    left: 1px;
+    width: 18px;
+    height: 18px;
+    -webkit-border-radius: 9px;
+    border-radius: 9px;
+  }
+
+  .aligCenter{
+    text-align: center;
+  }
+
+  div#myBox {
+    top:100px; 
+  }
+
+  div#buttonsPC {
+    border: 2px solid;
+    border-radius: 25px;
+   } 
+
+   div#displayIPMAC {
+
+    border-top: 2px solid lightgray;
+     border-bottom: 2px solid lightgray;
+  }​
+
+  IMG#powerOnPC {
+    display: block;
+    margin-left: auto;
+    margin-right: auto 
+  }
+
+  div.centered {
+    position: fixed;
+    display: block;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+  }
+
+  img.fblogo {
+    display: inline-block;
+    margin-left: auto;
+    margin-right: auto;
+    height: 85px; 
+  }
+
+  div#images{
+    text-align:center;
+  }
+
+  img.ECA1234WH{
+    width: 150px; 
+    height: 150px;
+  }
+
+div#divECA13{
+    position: absolute; 
+    left:325px;
+  }
+
+  div#divECA24{
+    position: absolute; 
+    left:780px;
+    
+  }
+
+
+  </style>
+
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="stylesheets/jquery.mobile-1.4.5.css">
+
+  <script src="javascripts/socket.io-client/socket.io.js"></script>
+  <script src="javascripts/client/delivery.js"></script>
+
+  <script src="javascripts/jquery-1.11.3.min.js"></script>
+  <script src="http://malsup.github.com/jquery.form.js"></script>
+  <script src="javascripts/jquery.mobile-1.4.5.js"></script> 
+  <script src="javascripts/jquery.easing.1.3.js"></script>
+  <script src="javascripts/JQuery_Functions.js"></script> 
+
+</head>
+
+<body>
+
+<!-- ******************************************************************************** -->
+<!-- ********************************* Pág. Inicio ********************************** -->
+<!-- ******************************************************************************** -->
+
+  <div data-role="page" id="pageone" >
+    <div data-role="header"  data-position="inline"  data-position="fixed">
+      <h1 >Aula del Futuro</h1>
+      <a href="#helpMainPage" class="ui-btn ui-btn-a ui-mini ui-corner-all ui-shadow ui-icon-info ui-btn-icon-left" > Info</a>
+      <a href="#configs" class="ui-btn ui-btn-a ui-mini ui-shadow ui-icon-gear ui-corner-all ui-btn-icon-right" >Config</a>
+      <div data-role="navbar">
+        <ul>
+        <li><a href="#SchedulingMain" class="ui-btn ui-shadow ui-icon-calendar ui-btn-icon-bottom" data-transition="flip" data-direction="reverse" style="color:#7a7a52" >Programar Módulo</a></li>
+        <li><a href="#uploadFile" id="" style="color:#008AEE" class="ui-btn  ui-shadow ui-icon-folder ui-btn-icon-bottom" data-transition="pop" data-inline="true">Proyectar Archivos</a></li>
+        </ul>
+      </div>
+    </div>  
+ 
+
+    <div data-role="panel" id="helpMainPage" data-position="left" data-display="overlay" data-position-fixed="true"> 
+      <h3 style="text-align:center">C&oacutemo usar esta app?</h3>
+
+      <p align="justify">En la p&aacutegina de inicio se muestran los m&oacutedulos: </p>
+      <pre><strong>Mural, Módulo 1, Módulo 2, <br>Módulo 3, Módulo 4</strong></pre>
+      <p align="justify">Cada uno de ellos se compone de una <strong>PC</strong> y un <strong>Proyector</strong>. La aplicaci&oacuten permite encender, apagar y programar cada m&oacutedulo.</p>
+      <p align="left"><strong>Los pasos a seguir son:</strong></p>
+      <p align="justify"><strong>1.</strong> Da click en el nombre del m&oacutedulo para seleccionarlo (click de nuevo para des-seleccionarlo)</p>
+      <p align="justify"><strong>2.</strong> Realiza la acci&oacuten de Encendido o Apagado de los m&oacutedulos dando click en los botones de la parte inferior.</p>
+      
+      <br>
+      <a href="#pageone" data-rel="close" class="ui-btn ui-shadow ui-corner-all ui-btn-b ui-icon-delete ui-btn-icon-left" >Cerrar panel</a>
+    </div>
+
+    <div data-role="panel" id="configs" data-position="right" data-display="overlay" data-position-fixed="true"> 
+      <strong><p align="left">Configurar:</p></strong>
+      <a href="#opcSeeConfModules"  class="ui-btn  ui-shadow ui-corner-all ui-btn-a ui-icon-gear ui-btn-icon-left" data-transition="flip" style="color:#996600">Módulos</a>
+      <a href="#configProyectores"  class="ui-btn  ui-shadow ui-corner-all ui-btn-a ui-icon-projector ui-btn-icon-left" data-transition="flip" style="color:#ff4d4d">Proyectores</a>
+      <a href="#projectorsControl"  class="ui-btn  ui-shadow ui-corner-all ui-btn-a ui-icon-projector ui-btn-icon-left" data-transition="flip" style="color:#ff4d4d">Control Proyectores</a>
+      <a href="#pruebaPCsss" class="ui-btn  ui-shadow ui-corner-all ui-btn-a ui-icon-pc ui-btn-icon-left ui-icon-adjust" data-transition="flip" style="color:#0000ff">Computadoras</a>
+      <br>
+      <a id="refreshMainPage" href="#pageone" class="ui-btn  ui-shadow ui-corner-all ui-btn-a ui-icon-refresh ui-btn-icon-left" style="color:#660003">Refrescar p&aacutegina</a>
+      <a href="#pageone" data-rel="close" class="ui-btn  ui-shadow ui-corner-all ui-btn-a ui-icon-delete ui-btn-icon-left" >Cerrar panel</a>
+      <br>
+    </div> 
+
+ 
+    <div data-role="main"  class="ui-content" >
+      <div data-role="popup" id="mainPagePopup" data-position-to="#Mural" data-transition="slidedown" data-history="false" data-overlay-theme="b">
+        <div data-role="header">
+          <h1 id="mainpageh1" style="text-align:center"></h1>
+        </div>
+        <div data-role="main" class="ui-content">
+          <h2 id="mainpageh2" style="text-align:center"></h2>
+          <h3 id="mainpageh3" style="text-align:center; color:blue"></h3>
+          <h2 id="mainpageh4" style="text-align:center"></h2>
+          <h3 id="mainpageh5" style="text-align:center; color:blue"></h3>
+          <br>
+          <div id="mainpageh6" ></div>
+          <div id="mainpageh7">
+            <a id="cancelTurnOff" href="#pageone" class="ui-btn ui-corner-all ui-shadow  ui-btn-b"  data-transition="pop" data-position-to="window">Aceptar</a>
+          </div>
+        </div>
+      </div>
+
+      <form methon="get" id="turnOnEcaMural">
+        <div id="brScreenTop"></div>
+        <div style="display:block">
+        <div style="display:inline-block; width:9%"></div>
+        <div style="display:inline-block; width:80%">
+          <label for="Mural" id="MuralLabel" style="background-color:#595959; text-align:center;color:#ffffff" >Mural  -  off 
+            <div  style="display:inline-block" class="iconleft">
+              <img id="loadIconMural" src=""/>
+            </div>
+          </label> 
+          <input type="checkbox" name="Mural" class=".ui-btn" id="Mural" value="" data-iconpos="right" data-shadow="true" data-inline="true" >
+        </div>
+        <div style="display:inline-block; width:9%"></div>
+        </div>
+
+        <br>
+        <div id="brScreenMiddle"></div>
+          <div id="divECA13" >
+              <div>
+                <input type="checkbox" name="ECA1" class=".ui-btn" id="ECA1" value="" data-iconpos="left" data-shadow="true" data-inline="" >
+                <img id="btnECA1" class="ECA1234WH" src="images/ECA1.png"/>
+              </div>
+              
+              <div>
+                <input type="checkbox" name="ECA2" class=".ui-btn" id="ECA2" value="" data-iconpos="right" data-shadow="true" data-inline="" >
+                <img id="btnECA2" class="ECA1234WH" src="images/ECA3.png"/>
+                
+              </div>
+        
+          </div>
+
+          <div  id="divECA24" >
+            <div>
+              <input type="checkbox" name="ECA3" class=".ui-btn" id="ECA3" value="" data-iconpos="right" data-shadow="true" data-inline="" >
+              <img id="btnECA3" class="ECA1234WH" src="images/ECA2.png"/>
+            </div>
+            
+            <div >
+              <input type="checkbox" name="ECA4" class=".ui-btn" id="ECA4" value="" data-iconpos="right" data-shadow="true" data-inline="" >
+              <img id="btnECA4" class="ECA1234WH" src="images/ECA4.png"/>
+            </div>
+          </div>          
+
+        <div id="brScreenMiddle2"></div>
+        <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+
+        <div id="brScreenBottom"></div>
+
+      </form>
+
+      <div style=" display:inline-block; width: 49%;">
+        <a id="turnOnEcaMuralb" href="#" class="ui-btn ui-corner-all ui-shadow ui-icon-power-button-sign ui-btn-icon-left">Encender</a>
+      </div>
+
+      <div style=" display:inline-block; width: 49%;">
+        <a id="turnOffEcaMural" href="#" class="ui-btn ui-corner-all ui-shadow ui-icon-power-button-sign2 ui-btn-icon-right">Apagar</a>
+      </div>
+    </div>
+
+    <br>
+
+    <div id="footerMainPage" data-role="footer"  data-position="" data-fullscreen="false">
+      <h1 >UNAM - CCADET</h1>
+    </div>
+
+  </div> 
+
+<!-- ******************************************************************************** -->
+<!-- ****************************** Config. ECA/MURAL ******************************* -->
+<!-- ******************************************************************************** -->
+
+  <div data-role="page" id="configEcaMural" data-position="fixed">
+    <div data-role="header" data-position="inline" style="background-color:#996600">
+      <a href="#opcSeeConfModules" class="ui-btn ui-corner-all ui-shadow ui-icon-back ui-btn-icon-left" data-transition="flip" data-direction="reverse">Atr&aacutes</a>
+      <h1 style="color:#ffffff">ECA/Mural </h1>
+      <a href="#ayudaConfigEcaMural" class="ui-btn ui-shadow ui-corner-all ui-btn-a ui-icon-info ui-btn-icon-right" >Info</a>
+      
+    </div>
+
+    <div data-role="panel" id="ayudaConfigEcaMural" data-position="right" data-display="overlay" data-position-fixed="false"> 
+      <h1>Hello</h1>
+      <a href="#configEcaMural" data-rel="close" class="ui-btn  ui-shadow ui-corner-all ui-btn-a ui-icon-delete ui-btn-icon-left" >Cerrar panel</a>
+    </div> 
+
+    <div data-role="main" class="ui-content" id="mainEcaMural" >
+
+        <div data-role="popup" id="configEca_MuralDiallogue" data-position-to="window" data-overlay-theme="b">
+           <div data-role="header">
+            <h1 id="configECA3" style="text-align:center"></h1>
+           </div>
+          <div data-role="main" class="ui-content">
+            <h2 id="configECA4" style="text-align:center"></h2>
+            <div style=" display:inline-block;width: 49%;"data-inline="true">
+              <a data-role="button" href="#configEcaMural" class="ui-btn ui-corner-all ui-shadow  ui-btn-b " data-rel="back" data-transition="pop" data-position-to="window" data-inline="false">Cancelar</a>
+            </div>
+            <div style=" display:inline-block;width: 49%;" data-inline="true">
+              <a id="sbmitBtnEca_Mural" data-role="button" href="#configEca_MuralDiallogue2" class="ui-btn ui-corner-all ui-shadow  ui-btn-b "  data-transition="pop" data-position-to="window" data-inline="false">Continuar</a>
+            </div>
+          </div>
+        </div>
+      
+        <div>
+        <strong><p align="center" >Selecciona una configuraci&oacuten para ECA/Mural y presiona bot&oacuten "Configurar"</p></strong>
+          <fieldset class="ui-field-contain">
+            <label for="Eca_Mural"><span style="color:#996600"><strong>M&oacutedulo:</strong></span></label>
+            <select name="Eca_Mural" id="Eca_Mural">
+              <option value="Mural">Mural</option>
+              <option value="ECA1">Módulo 1</option>
+              <option value="ECA2">Módulo 2</option>
+              <option value="ECA3">Módulo 3</option>
+              <option value="ECA4">Módulo 4</option>
+            </select>
+          </fieldset>
+        </div>
+
+        <div>
+          <fieldset class="ui-field-contain">
+            <label for="selectPC"><span style="color:#996600"><strong>Computadora:</strong></label></span>
+            <select name="selectPC" id="selectPC">
+             <!-- Dynamic buttons -->
+            </select>
+          </fieldset>
+        </div>
+
+        <div>
+          <fieldset class="ui-field-contain">
+            <label for="selectProjector"><span style="color:#996600"><strong>Proyector:</strong></span></label>
+            <select name="selectProjector" id="selectProjector">
+              <!-- Dynamic buttons -->
+            </select>
+          </fieldset>
+        </div>
+
+        <div>
+          <fieldset class="ui-field-contain">
+            <label for="selectPort"><span style="color:#996600"><strong>Puerto serial para proyector:</strong></span></label>
+            <select name="selectPort" id="selectPort">
+              <option value="1">Puerto 1</option>
+              <option value="2">Puerto 2</option>
+              <option value="3">Puerto 3</option>
+              <option value="4">Puerto 4</option>
+              <option value="5">Puerto 5</option>
+              <option value="6">Puerto 6</option>
+              <option value="7">Puerto 7</option>
+            </select>
+          </fieldset>
+        </div>
+
+        <br>
+
+        <div style="display:block">
+          <div style="display:inline-block; width:20%"></div>
+          <div style="display:inline-block; width:60%">
+            <a href="#configEca_MuralDiallogue"  id="establecerECAMural" data-rel="popup" data-position-to="window" data-role="button"  data-inline="false" data-theme="b" data-icon="gear" data-iconpos="right">Configurar</a></div>
+          <div style="display:inline-block; width:20%"></div>
+        </div>
+
+    </div>
+
+    <div data-role="footer" style="background-color:#996600" data-position="fixed">
+      <h1 style="color:#ffffff">UNAM - CCADET</h1>
+    </div>
+
+  </div> 
+
+  <!-- **************************** Config Actual de Módulos **************************** -->
+
+  <div data-role="page" id="opcSeeConfModules">
+    
+    <div data-role="header" data-position="inline"  style="background-color:#996600" data-position="fixed">
+      <a href="#pageone" class="ui-btn ui-corner-all ui-shadow ui-icon-back ui-btn-icon-left" data-transition="flip" data-direction="reverse">Atr&aacutes</a>
+      <h1 style="color:#ffffff">Config. M&oacutedulos</h1>
+      <a href="#opcConfigModule" class="ui-btn ui-corner-all ui-shadow ui-icon-info ui-btn-icon-right" data-transition="flip" >Info</a>
+      <div data-role="navbar" >
+        <ul>
+        <li><a href="#configEcaMural" class="ui-btn ui-shadow ui-icon-bars ui-btn-a ui-btn-icon-bottom" data-transition="flip" >Configurar m&oacutedulos</a></li>
+        </ul>
+      </div>
+    </div>
+
+    <div data-role="panel" id="opcConfigModule" data-position="right" data-position-fixed="false" data-display="overlay"> 
+      <h1>Hello</h1>
+      <br>
+      <a href="#opcSeeConfModules" data-rel="close" class="ui-btn  ui-shadow ui-corner-all ui-btn-a ui-icon-delete ui-btn-icon-left" >Cerrar panel</a>
+    </div> 
+
+    <div data-role="main" class="ui-content">
+      <strong><p align="center">Configuraci&oacuten actual de cada m&oacutedulo</p></strong>
+      <br>
+      <table data-role="table" class="ui-responsive" id="currentConfigModulesTable">
+        <thead>
+          <tr>
+            <th id="mod"></th>
+            <th id="ppcc"></th>
+            <th id="pro"></th>
+            <th id="prto"> </th>
+          </tr>
+        </thead>
+        <!-- Dynamic Buttons -->
+      </table>
+      <br>
+      <h2 id="" style="color:lightgray; text-align:center"></h2>
+
+    </div>
+
+    <br>
+    <div data-role="footer"  style="background-color:#996600" data-position="fixed">
+        <h1 style="color:#ffffff">UNAM - CCADET</h1>
+    </div>
+
+  </div> 
+
+
+
+<!-- ******************************************************************************** -->
+<!-- ********************************* Proyectores ********************************** -->
+<!-- ******************************************************************************** -->
+
+
+<!-- **************************** Menú para proyectores **************************** -->
+
+  <div data-role="page" id="configProyectores" data-position="fixed">
+    <div data-role="header" data-position="inline"  style="background-color:#ff4d4d">
+      <a href="#pageone" class="ui-btn ui-corner-all ui-shadow ui-icon-back ui-btn-icon-left" data-transition="flip" data-direction="reverse">Atr&aacutes</a>
+      <h1 style="color:#ffffff">Proyectores </h1>
+      <a href="#helpMainProjector" class="ui-btn ui-corner-all ui-shadow ui-icon-info ui-btn-icon-left" data-transition="flip">Info</a>
+      <div data-role="navbar" >
+        <ul>
+          <li><a href="#addProjector" class="ui-btn ui-shadow ui-icon-plus ui-btn-a ui-btn-icon-bottom" data-transition="flip" >Agregar proyector</a></li>
+        </ul>
+      </div>
+    </div>
+
+    <div data-role="panel" id="helpMainProjector" data-position="right" data-display="overlay" data-position-fixed="true"> 
+      <h2 style="text-align:center">Hello</h2>
+
+      <br>
+      <a href="#configProyectores" data-rel="close" class="ui-btn ui-shadow ui-corner-all ui-btn-a ui-icon-delete ui-btn-icon-right" >Cerrar panel</a>
+    </div>
+
+    <div data-role="main" class="ui-content" id="mainProyectores" >
+      <strong><p align="left" >Proyectores actuales:</p></strong>
+      <div id="dataForProject">
+        <!-- Dynamic Buttons -->
+      </div>
+
+    </div>
+
+    <br> <br>
+
+    <div data-role="footer" style="background-color:#ff4d4d" data-position="fixed">
+      <h1 style="color:#ffffff">UNAM - CCADET</h1>
+    </div>
+
+  </div> 
+
+  <!-- **************************** Agregar proyectores **************************** -->
+
+  <div data-role="page" id="addProjector" data-position="fixed">
+    <div data-role="header" data-position="inline"  style="background-color:#ff4d4d">
+      <a href="#configProyectores" class="ui-btn ui-corner-all ui-shadow ui-icon-back ui-btn-icon-left" data-transition="flip" data-direction="reverse">Atr&aacutes</a>
+      <h1 style="color:#ffffff">Add Proyectores</h1>
+      <a href="#helpaddProjector" class="ui-btn ui-corner-all ui-shadow ui-icon-info ui-btn-icon-left" data-transition="flip">Info</a>
+    </div>
+
+    <div data-role="panel" id="helpaddProjector" data-position="right" data-display="overlay" data-position-fixed="true"> 
+      <h2 style="text-align:center">Hello</h2>
+
+      <br>
+      <a href="#addProjector" data-rel="close" class="ui-btn ui-shadow ui-corner-all ui-btn-a ui-icon-delete ui-btn-icon-right" >Cerrar panel</a>
+    </div>
+
+    <div data-role="main" class="ui-content" id="" >
+
+      <div data-role="popup" id="ValidDataAddProjector" data-position-to="window" data-overlay-theme="b">
+        <div data-role="header">
+          <h1 id="ValidDataProj" style="text-align:center"> </h1>
+        </div>
+        <div data-role="main" class="ui-content">
+          <h2 id="ValidDataProj2" style="text-align:center"></h2>
+          <br>
+          <a id="addSuccessProj"  class="ui-btn ui-corner-all ui-shadow  ui-btn-b " data-rel="back"  data-position-to="window">Ok</a>
+        </div>
+      </div>
+     
+      <form method="get" action="" id="dataForProjectors">
+
+        <label for="nameProjector"><strong>Marca-Modelo:</strong></label>
+        <input type="text" name="proyectorName" id="proyectorName" class="cmdP" value="" placeholder="ViewSonic-PJD6251" data-clear-btn="true"/>
+        <label for="onCmd"><strong>Comando de encendido:</strong></label>
+        <input type="text" name="onCmd" id="onCmd" value="" placeholder="Ej. 1A,2B,3C,4D" data-clear-btn="true"/>
+        <label for="offCmd"><strong>Comando de apagado:</strong></label>
+        <input type="text" name="offCmd" id="offCmd" value="" placeholder="Ej. 5E,6F,AA,FF" data-clear-btn="true"/>
+        <label for="onAckCmd"><strong>Comando respuesta para encendido:</strong></label>
+        <input type="text" name="onAckCmd" id="onAckCmd" value="" placeholder="Ej. 06,11" data-clear-btn="true"/>
+        <label for="offAckCmd"><strong>Comando respuesta para apagado:</strong></label>
+        <input type="text" name="offAckCmd" id="offAckCmd" value="" placeholder="Ej. 06,10" data-clear-btn="true"/>
+        <label for="baudRate"><strong>BaudRate:</strong></label>
+        <input type="text" name="baudRate" id="baudRate" value="" placeholder="Ej. 19200" data-clear-btn="true"/>
+
+      </form>
+
+      <br>
+      <div style="display:block">
+        <div style="display:inline-block; width:20%"></div>
+        <div style="display:inline-block; width:60%;">
+          <a href="#" id="sbmtAddProjectors" class="ui-btn ui-btn-b ui-corner-all ui-shadow ui-icon-plus ui-btn-icon-right" data-transition="flip" data-direction="reverse">Agregar</a>
+        </div>
+        <div style="display:inline-block; width:20%"></div>
+      </div>
+    </div>
+
+    <br> <br>
+
+    <div data-role="footer" style="background-color:#ff4d4d" data-position="fixed">
+      <h1 style="color:#ffffff">UNAM - CCADET</h1>
+    </div>
+
+  </div> 
+
+<!-- ******************************************************************************** -->
+<!-- **************************** Programar ECA/Mural ******************************* -->
+<!-- ******************************************************************************** --> 
+
+<!-- ************************* Programaciones de ECA/Mural ************************ -->
+
+<div data-role="page" id="SchedulingMain" data-position="fixed">
+    <div data-role="header" class="inline" style="background-color:#7a7a52">
+      <h1 style="color:#ffffff">Programaciones</h1>
+      <a href="#pageone" class="ui-btn ui-corner-all ui-shadow ui-icon-back ui-btn-icon-left" data-transition="flip">Atr&aacutes</a>
+     <!--  <a href="#helpProgramModule" class="ui-btn ui-corner-all ui-shadow ui-icon-info ui-btn-icon-left" data-transition="flip">Info</a> -->
+      <div data-role="navbar">
+        <ul>
+          <li>
+            <a href="#Scheduling" class="ui-btn ui-shadow ui-icon-plus ui-btn-icon-bottom" data-transition="flip" data-direction="reverse" style="color:#7a7a52" >Programar ZIT</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+
+    <div data-role="panel" id="helpProgramModule" data-position="right" data-display="overlay" data-position-fixed="true"> 
+      <h2 style="text-align:center">Hello</h2>
+
+      <br>
+      <a href="#SchedulingMain" data-rel="close" class="ui-btn ui-shadow ui-corner-all ui-btn-a ui-icon-delete ui-btn-icon-right" >Cerrar panel</a>
+    </div>
+      
+    <div data-role="main" class="ui-content">
+      
+      <div data-role="popup" id="" data-position-to="#" data-transition="slidedown" >
+        <div data-role="header">
+          
+        </div>
+
+        <div data-role="main" class="ui-content">
+        </div>
+      </div>
+
+      <p><strong>Programaciones actuales:</strong></p>
+
+      <div data-role="collapsible" data-collapsed-icon="arrow-d" data-expanded-icon="arrow-u"> 
+      <h1>Calse08</h1>
+        <div class="ui-grid-a"> 
+          <div class="ui-block-a">
+            <a href="" class="ui-btn ui-btn-a ui-mini ui-shadow ui-icon-gear ui-btn-icon-left" 
+              data-transition="flip">Editar
+            </a> 
+          </div> 
+          <div class="ui-block-b">
+            <a href="" class="ui-btn ui-btn-a ui-mini ui-shadow ui-icon-delete ui-btn-icon-right" 
+              data-transition="flip">Cancelar
+            </a> 
+          </div>
+        </div>
+        <p><strong>Encender:</strong> Mural, ECA3</p>
+        <p><strong>Fecha:</strong> 25 de Agosto</p>
+        <p><strong>Horario:</strong> 7:00 AM</p>
+      </div>
+
+    </div>
+
+    <div data-role="footer" style="background-color:#7a7a52" data-position="fixed">
+      <h1 style="color:#ffffff">UNAM - CCADET</h1>
+    </div>
+
+  </div> 
+
+<!-- ************************* Programar ECA/Mural ************************ -->
+
+  <div data-role="page" id="Scheduling" data-position="fixed">
+    <div data-role="header" class="inline" style="background-color:#7a7a52">
+      <h1 style="color:#ffffff">Programar</h1>
+      <a href="#SchedulingMain" class="ui-btn ui-corner-all ui-shadow ui-icon-back ui-btn-icon-left" data-transition="flip">Atr&aacutes</a>
+    </div>
+      
+    <div data-role="main" class="ui-content">
+
+      <div data-role="popup" id="programPagePopup" data-position-to="#date" data-transition="slidedown" >
+        <div data-role="header">
+          <h1 id="programPageh1" style="text-align:center"></h1>
+        </div>
+        <div data-role="main" class="ui-content">
+          <h2 id="programPageh2" style="text-align:center"></h2>
+          <h2 id="programPageh3" style="text-align:center"></h2>
+          <br>
+          <div id="programPageh4" style=" display:inline-block;width: 49%;"data-inline="true">
+              <a data-role="button" class="ui-btn ui-corner-all ui-shadow  ui-btn-b " data-rel="back" data-transition="pop" data-position-to="window" data-inline="false">Cancelar</a>
+          </div>
+          <div id="programPageh5" style=" display:inline-block;width: 49%;" data-inline="true">
+              <a id="programECAMuralSubmit" data-role="button" href="#Scheduling" class="ui-btn ui-corner-all ui-shadow  ui-btn-b "  data-transition="pop" data-position-to="window" data-inline="false">Continuar</a>
+          </div>
+        </div>
+      </div>
+    
+
+      <form method="get" action="" id="programECAMural">
+      <div>
+        <fieldset class="ui-field-contain">
+          <label for="NamE"  ><strong>Nombre:</strong></label> 
+          <input type="text" name="text"  id="NamE" value="" data-shadow="true" placeholder="Nombre de la clase" data-clear-btn="true">
+        </fieldset>
+      </div>
+      <br>
+      <legend><strong>Selecciona ZIT:</strong></legend>
+        <div align="center">
+          <fieldset  data-role="controlgroup" data-type="horizontal">
+            
+              <label for="MuralPm">Mural</label>
+              <input type="checkbox" name="MuralPm" id="MuralPm" value="MuralPm">
+
+              <label for="ECA1Pm">ECA1</label>
+              <input type="checkbox" name="ECA1Pm" id="ECA1Pm" value="ECA1Pm">
+
+              <label for="ECA2Pm">ECA2</label>
+              <input type="checkbox" name="ECA2Pm" id="ECA2Pm" value="ECA2Pm">
+
+              <label for="ECA3Pm">ECA3</label>
+              <input type="checkbox" name="ECA3Pm" id="ECA3Pm" value="ECA3Pm">
+
+              <label for="ECA4Pm">ECA4</label>
+              <input type="checkbox" name="ECA4Pm" id="ECA4Pm" value="ECA4Pm">
+
+           </fieldset>
+        </div>
+        <br>
+        <div>
+          <fieldset class="ui-field-contain">
+            <label for="date"  ><strong>Fecha:</strong></label> 
+            <input type="date" name="date"  id="date" value="" data-shadow="true">
+          </fieldset>
+        </div>
+        <br>
+        <div>
+          <fieldset class="ui-field-contain">
+            <label for="time"  ><strong>Horario:</strong></label> 
+            <input type="time" name="time" max="1979-12-31" min="2000-01-02">
+          </fieldset>
+        </div>
+
+        <br>
+        <div style="display:block">
+          <div style="display:inline-block; width:20%"></div>
+          <div style="display:inline-block; width:60%;">
+            <a href="#" id="alertProgramECAMural" data-rel="popup" data-icon="calendar" data-iconpos="right" data-position-to="window" data-role="button" data-inline="false" data-theme="b">Programar</a>
+          </div>
+          <div style="display:inline-block; width:20%"></div>
+        </div>
+
+      </form>
+
+    </div>
+
+    <div data-role="footer" style="background-color:#7a7a52" data-position="fixed">
+      <h1 style="color:#ffffff">UNAM - CCADET</h1>
+    </div>
+
+  </div> 
+
+<!-- ******************************************************************************** -->
+<!-- ********************************* Computadoras ********************************* -->
+<!-- ******************************************************************************** -->
+
+<!-- **************************** Menú para computadoras **************************** -->
+
+  <div data-role="page" id="menuPC" data-position="fixed">
+    <div data-role="header" data-position="inline" style="background-color:#0000ff">
+      <a href="#pageone" class="ui-btn ui-corner-all ui-shadow ui-icon-back ui-btn-icon-left" data-transition="flip" data-direction="reverse">Atr&aacutes</a>
+      <h1 style="color:#ffffff">PC's </h1>
+      <a id="" href="#ayudaPC" class="ui-btn  ui-shadow ui-corner-all ui-btn-a ui-icon-info ui-btn-icon-right" >info </a> 
+      <div data-role="navbar">
+        <ul>
+        <li><a href="#AddComputers" class="ui-btn ui-shadow ui-icon-plus ui-btn-icon-bottom" data-transition="flip" style="color:black" >Agregar PC</a></li>
+        <li><a href="#" class="ui-btn ui-shadow ui-icon-gear  ui-btn-icon-bottom" data-transition="flip" style="color:black" >Editar</a></li>
+        <li><a href="#" class="ui-btn ui-shadow ui-icon-delete  ui-btn-icon-bottom" data-transition="flip" style="color:black" >Eliminar</a></li>
+        </ul>
+      </div>
+    </div>
+
+    <div data-role="panel" id="ayudaPC" data-position="right" data-display="overlay" data-position-fixed="false"> 
+      <h1>Hello</h1>
+      <a href="#menuPC" data-rel="close" class="ui-btn  ui-shadow ui-corner-all ui-btn-a ui-icon-delete ui-btn-icon-left">Cerrar panel</a>
+      <br>
+      <a href="#ComputersControl" class="ui-btn ui-corner-all ui-shadow ui-icon-back ui-btn-icon-left" data-transition="flip" data-direction="reverse">PC</a>
+    </div> 
+
+    <div data-role="main" class="ui-content" id="mainPC" >
+
+      <div style="display:block;">
+         <div style="display:inline-block; width:90%" > 
+          <fieldset class="ui-field-contain" style="">
+            <label for="controlPCs"><strong>PC:</strong></label>
+            <select name="controlPCs" id="controlPCs" >
+              <!-- Dynamic buttons -->
+            </select>
+          </fieldset>
+         </div> 
+         <div id="powerPCButton" style="display:inline-block; width:8%" > 
+          <svg height="35px" width="35px">
+           <circle  cx="20" cy="16" r="10" fill="black" />
+          </svg>
+        </div>
+      </div>
+      
+      <div id="images">
+        <svg height="25px" width="70px">
+          <text x="1" y="22" fill="black">On</text>
+        </svg>
+        
+        <svg height="25px" width="80">
+          <text x="58" y="22" fill="black">Off</text>
+        </svg>
+        
+      </div>
+
+      <div id="images">
+          <IMG id="powerOnPC"  class="fblogo"   src="images/power-button-On.svg" />
+          <div style="display:inline-block; width:38px" data-inline="true"></div>
+          <IMG id="powerOffPC" class="fblogo" src="images/power-button-Off.svg" />
+      </div>
+      <br>
+      <div  id="displayIPMAC" data-inline="false">
+        <!-- Dynamic button -->
+      </div>
+    </div>
+
+    <div data-role="footer" style="background-color:#0000ff" data-position="fixed">
+      <h1 style="color:#ffffff">UNAM - CCADET</h1>
+    </div>
+
+  </div> 
+
+<!-- ************************************************************************* -->
+<div data-role="page" id="pruebaPCsss" data-position="fixed">
+  
+    <div data-role="header" data-position="inline" style="background-color:#0000ff">
+     <a href="#pageone" class="ui-btn ui-corner-all ui-shadow ui-icon-back ui-btn-icon-left" data-transition="flip" data-direction="reverse">Atr&aacutes</a>
+     <h1 style="color:#ffffff">PC's </h1>
+     <a id="" href="#ayudaPC" class="ui-btn  ui-shadow ui-corner-all ui-btn-a ui-icon-info ui-btn-icon-right" >info </a> 
+
+     <div data-role="navbar">
+        <ul>
+        <li><a href="#AddComputers" class="ui-btn ui-shadow ui-icon-plus ui-btn-icon-bottom" data-transition="flip" style="color:black" >Agregar PC</a></li>
+        </ul>
+      </div>
+    </div>
+ 
+    <div data-role="panel" id="ayudaPC" data-position="right" data-display="overlay" data-position-fixed="false"> 
+      <h1>Hello</h1>
+      <a href="#menuPC" data-rel="close" class="ui-btn  ui-shadow ui-corner-all ui-btn-a ui-icon-delete ui-btn-icon-left">Cerrar panel</a>
+      <br>
+      <a href="#ComputersControl" class="ui-btn ui-corner-all ui-shadow ui-icon-back ui-btn-icon-left" data-transition="flip" data-direction="reverse">PC</a>
+    </div>
+
+    <div data-role="main" class="ui-content" id="pruebaPCss">
+      <strong><p align="left" >Computadoras actuales:</p></strong>
+        
+    </div>
+
+    <div data-role="footer" style="background-color:#0000ff" data-position="fixed">
+      <h1 style="color:#ffffff">UNAM - CCADET</h1>
+    </div>
+</div>
+
+<!-- ********************** Control individual de Computadoras ********************** -->
+
+  <div data-role="page" id="ComputersControl" data-position="fixed">
+    <div data-role="header" data-position="inline" style="background-color:#0000ff">
+      <a href="#menuPC" class="ui-btn ui-corner-all ui-shadow ui-icon-back ui-btn-icon-left" data-transition="flip" data-direction="reverse">Atr&aacutes</a>
+      <h1 style="color:#ffffff">Encender PC </h1>
+      <a href="#OPC" class="ui-btn ui-corner-all ui-shadow ui-icon-bullets ui-btn-icon-right" data-transition="flip">Opci&oacuten</a>
+    </div>
+
+    <div data-role="panel" id="OPC" data-position="right" data-display="overlay" data-position-fixed="false"> 
+      <a href="#pageone" class="ui-btn ui-corner-all ui-shadow ui-icon-home ui-btn-icon-left" data-transition="flip" data-direction="reverse" style="color: #778899">Inicio</a>
+      <a id="refreshPCpage" href="#ComputersControl" class="ui-btn  ui-shadow ui-corner-all ui-btn-a ui-icon-refresh ui-btn-icon-left" style="color:#660003">Recargar p&aacutegina</a>
+      <br>
+      <a href="#ComputersControl" data-rel="close" class="ui-btn  ui-shadow ui-corner-all ui-btn-a ui-icon-delete ui-btn-icon-left">Cerrar panel</a>
+    </div> 
+
+
+    <div data-role="main" class="ui-content" id="asd" >
+      <div data-role="popup" id="DELL1Dialogue" data-position-to="window">
+        <div data-role="header">
+          <h1 id="PcOn_PSend" style="text-align:center"> </h1>
+        </div>
+        <div data-role="main" class="ui-content">
+          <h2 id="PcOn_PSend2" style="text-align:center"> </h2>
+          <!-- <a id="ClrDialChart" data-role="button" href="#ComputersControl" class="ui-btn ui-corner-all ui-shadow  ui-btn-b " data-rel="back" data-transition="pop" data-position-to="window">Ok</a> -->
+        </div>
+      </div>
+
+      <div>
+        <strong><p align="center" >Presiona bot&oacuten con el nombre de la computadora que desees encender </p></strong>
+          <h2 id="noPctoTurOn" style="color:lightgray; text-align:center"> </h2>
+          <p id="noPctoTurOn2" style="color:lightgray; text-align:center"> </p>
+          <!-- Dynamic Buttons -->
+      </div>
+    </div>
+
+  
+
+    <div data-role="footer" style="background-color:#0000ff" data-position="fixed">
+      <h1 style="color:#ffffff">UNAM - CCADET</h1>
+    </div>
+
+  </div> 
+
+
+<!-- ****************************** Add New Computers ****************************** -->
+
+  <div data-role="page" id="AddComputers" data-position="fixed">
+    <div data-role="header" data-position="inline" style="background-color:#0000ff">
+      <a href="#pruebaPCsss" class="ui-btn ui-corner-all ui-shadow ui-icon-back ui-btn-icon-left" data-transition="flip" data-direction="reverse">Atr&aacutes</a>
+      <a href="#OPC2" class="ui-btn ui-corner-all ui-shadow ui-icon-bullets ui-btn-icon-right" data-transition="flip">Opci&oacuten</a>
+      <h1 style="color:#ffffff">Agregar PC</h1>
+    </div>
+
+    <div data-role="panel" id="OPC2" data-position="right" data-display="overlay" data-position-fixed="false"> 
+      <a href="#pageone"  class="ui-btn  ui-shadow ui-corner-all ui-btn-a ui-icon-home ui-btn-icon-left" data-transition="flip" data-direction="reverse" style="color: #778899">Inicio</a>
+      <a id="refreshPCpage5" href="#AddComputers"  class="ui-btn  ui-shadow ui-corner-all ui-btn-a ui-icon-refresh ui-btn-icon-left" style="color:#660003">Recargar p&aacutegina</a>
+      <br>
+      <a href="#AddComputers" data-rel="close" class="ui-btn  ui-shadow ui-corner-all ui-btn-a ui-icon-delete ui-btn-icon-left">Cerrar panel</a>
+    </div>
+
+    <div data-role="main" class="ui-content">
+
+      <div data-role="popup" id="ValidDataAddPC" data-position-to="window" data-overlay-theme="b">
+        <div data-role="header">
+          <h1 id="ValidData" style="text-align:center"> </h1>
+        </div>
+        <div data-role="main" class="ui-content">
+          <h2 id="ValidData1" style="text-align:center"></h2>
+          <a id="addSuccess" href="#AddComputers" class="ui-btn ui-corner-all ui-shadow  ui-btn-b  " data-rel="back" data-transition="pop" data-position-to="window">Ok</a>
+        </div>
+      </div>
+
+      <div>
+        <strong><p align="center" >Agrega la PC del aula que desees controlar desde la red</p></strong>
+       
+        <label for="namePC"><strong>Nombre:</strong></label>
+        <input type="text" name="name" id="namePC" value="" placeholder="Solo letras y numeros, sin espacios" data-clear-btn="true"/>
+
+        <label for="basic"><strong>Direcci&oacuten IP:</strong></label>
+        <input type="text" name="name2" id="dirIP" value="" placeholder="192.168.11.100" data-clear-btn="true"/>
+        
+        <label for="MACaddr"><strong>Direcci&oacuten F&iacutesica:</strong></label>
+        <input type="text" name="name1" id="MACaddr" value="" placeholder="A1:B2:C3:D4:E5:F6" data-clear-btn="true"/>
+      </div> 
+
+      <br>
+
+      <div style="display:block">
+        <div style="display:inline-block; width:20%"></div>
+        <div style="display:inline-block; width:60%;">
+          <a href="#ValidDataAddPC" id="ADDPC" data-rel="popup" data-icon="plus" data-iconpos="right" data-position-to="window" data-role="button" data-inline="false" data-theme="b">Agregar</a>
+        </div>
+        <div style="display:inline-block; width:20%"></div>
+      </div>
+      
+    </div>
+
+    <div data-role="footer" style="background-color:#0000ff" data-position="fixed">
+      <h1 style="color:#ffffff">UNAM - CCADET</h1>
+    </div>
+
+  </div> 
+
+<!-- ***************************** Eliminar Computadora ***************************** -->
+
+  <div data-role="page" id="ConfigureComputers" data-position="fixed">
+    <div data-role="header" data-position="inline" style="background-color:#0000ff">
+      <a href="#menuPC" class="ui-btn ui-corner-all ui-shadow ui-icon-back ui-btn-icon-left" data-transition="flip" data-direction="reverse">Atr&aacutes</a>
+      <a href="#OPC3" class="ui-btn ui-corner-all ui-shadow ui-icon-bullets ui-btn-icon-right" data-transition="flip">Opci&oacuten</a>
+      <h1 style="color:#ffffff">Eliminar PC</h1>
+    </div>
+
+    <div data-role="panel" id="OPC3" data-position="right" data-display="overlay" data-position-fixed="false"> 
+      <a href="#pageone"  class="ui-btn  ui-shadow ui-corner-all ui-btn-a ui-icon-home ui-btn-icon-left" data-transition="flip" data-direction="reverse" style="color: #778899">Inicio</a>
+      <a id="refreshPCpage6" href="#ConfigureComputers"  class="ui-btn  ui-shadow ui-corner-all ui-btn-a ui-icon-refresh ui-btn-icon-left" style="color:#660003">Recargar p&aacutegina</a>
+      <br>
+      <a href="#ConfigureComputers" data-rel="close" class="ui-btn  ui-shadow ui-corner-all ui-btn-a ui-icon-delete ui-btn-icon-left">Cerrar panel</a>
+    </div>
+
+    <div data-role="main" class="ui-content" >
+      <div data-role="popup" id="deletePC" data-position-to="window" data-overlay-theme="b">
+        <div data-role="header">
+          <h1 id="pcDelete" style="text-align:center"> </h1>
+        </div>
+        <div data-role="main" class="ui-content">
+          <h2 id="pcDelete2" style="text-align:center"></h2>
+          <a  href="#ConfigureComputers" class="ui-btn ui-corner-all ui-shadow  ui-btn-b  " data-rel="back" data-transition="pop" data-position-to="window">Ok</a>
+        </div>
+      </div>
+
+      <div>      
+        <strong><p align="center">Selecciona la PC que desees eliminar de la lista y pulsa el boton "Borrar" </p></strong>
+      </div>
+
+      <div >
+        <form method="get" action="/deleteDataPC" id="ConfigureButtons" > 
+           <p align="center" id="sbmitBtnDelte"><input type="submit" data-inline="false" value="Borrar" data-icon="delete" data-iconpos="left" data-shadow="true"  data-theme="b"></p>
+           <strong><p align="center">Lista de PC's disponibles: </p></strong>
+           <h2 id="noDeletePC" style="color:lightgray;text-align:center"> </h2>
+           <!-- Dynamic Buttons -->
+        </form>
+      </div>
+    </div>
+
+    <div data-role="footer" style="background-color:#0000ff" data-position="fixed">
+      <h1 style="color:#ffffff">UNAM - CCADET</h1>
+    </div>
+
+  </div> 
+
+<!-- ******************************* IP/Mac Addr Table PC's ******************************* -->
+
+  <div data-role="page" id="MacAddrTable" data-position="fixed">
+    <div data-role="header" data-position="inline" style="background-color:#0000ff">
+      <a href="#menuPC" class="ui-btn ui-corner-all ui-shadow ui-icon-back ui-btn-icon-left" data-transition="flip" data-direction="reverse">Atr&aacutes</a>
+      <a href="#OPC4" class="ui-btn ui-corner-all ui-shadow ui-icon-bullets ui-btn-icon-right" data-transition="flip">Opci&oacuten</a>
+      <h1 style="color:#ffffff">Dir. F&iacutesicas e IP </h1>
+    </div>
+
+    <div data-role="panel" id="OPC4" data-position="right" data-display="overlay" data-position-fixed="false"> 
+      <a href="#pageone"  class="ui-btn  ui-shadow ui-corner-all ui-btn-a ui-icon-home ui-btn-icon-left" data-transition="flip" data-direction="reverse" style="color: #778899">Inicio</a>
+      <a id="refreshPCpage7" href="#MacAddrTable" class="ui-btn  ui-shadow ui-corner-all ui-btn-a ui-icon-refresh ui-btn-icon-left" style="color:#660003" >Recargar p&aacutegina</a>
+      <br>
+      <a href="#MacAddrTable" data-rel="close" class="ui-btn  ui-shadow ui-corner-all ui-btn-a ui-icon-delete ui-btn-icon-left" >Cerrar panel</a>
+    </div>
+
+    <div data-role="main" class="ui-content" >
+      <strong><p align="center">Lista de PC's del aula con su nombre y su respectiva direcci&oacuten IP/F&iacutesica</p></strong>
+      <br>
+      <table data-role="table" class="ui-responsive" id="macAddrTable">
+        <thead>
+          <tr>
+            <th id="NAMe"> </th>
+            <th id="DIRFIS"> </th>
+            <th id="DIRIP"> </th>
+          </tr>
+        </thead>
+        <!-- Dynamic Buttons -->
+      </table>
+      <br>
+      <h2 id="noTablePC" style="color:lightgray; text-align:center"> </h2>
+    </div>
+
+    <div data-role="footer" style="background-color:#0000ff" data-position="fixed">
+      <h1 style="color:#ffffff">UNAM - CCADET</h1>
+    </div>
+  </div> 
+
+  <!-- ********************************* Subir/Abrir archivos ********************************* -->
+
+<div data-role="page" id="uploadFile" data-position="fixed">
+
+  <div data-role="header" data-position="inline" style="background-color:#008AEE">
+    <a href="#pageone" class="ui-btn ui-corner-all ui-shadow ui-icon-back ui-btn-icon-left" data-transition="pop" data-direction="reverse">Atr&aacutes</a>
+    <h1 style="color:#ffffff">Archivos</h1>
+    <a id="" href="#ayudaUploadFile" class="ui-btn  ui-shadow ui-corner-all ui-btn-a ui-icon-info ui-btn-icon-right" >Info </a> 
+  </div>
+
+  <div data-role="panel" id="ayudaUploadFile" data-position="right" data-display="overlay" data-position-fixed="false"> 
+      <h1>Hello</h1>
+      <a href="#uploadFile" data-rel="close" class="ui-btn  ui-shadow ui-corner-all ui-btn-a ui-icon-delete ui-btn-icon-left">Cerrar panel</a>
+    </div> 
+
+  <div data-role="main" class="ui-content" >
+
+    <br>
+    <p style="color:#008AEE"><strong>Selecciona archivo para proyectar:</strong></p>
+    <div data-role="collapsible" data-collapsed="true" data-collapsed-icon="arrow-d" data-expanded-icon="arrow-u">
+      <h1>Archivo: </h1>
+      <br>
+      <div id="displayFiles">
+        <li>
+          <label for="MuralInteractivo" style="text-align:center;">MuralInteractivo.bat</label>
+          <input type="radio" name="file" id="MuralInteractivo" value="MuralInteractivo" data-iconpos="left" data-shadow="true">
+          
+        </li>
+      </div>
+    </div>
+
+    <br><br>
+
+    <form method="get" action="" id="whichModuleShowFile" > 
+      <div>
+        <fieldset class="ui-field-contain">
+          <label for="modulOP" style="color:#008AEE"><strong>Proyectar en:</strong></label>
+          <select name="modulOP" id="modulOP">
+            <option value="Mural">Mural</option>
+            <option value="ECA1">ECA 1</option>
+            <option value="ECA2">ECA 2</option>
+            <option value="ECA3">ECA 3</option>
+            <option value="ECA4">ECA 4</option>
+          </select>
+        </fieldset>
+      </div>
+    </form>
+
+    <br><br><br><br>
+
+   <div style="display:block">
+        <div style="display:inline-block; width:35%"></div>
+        <div style="display:inline-block; width:30%;">
+          <a href="#" id="" data-rel="popup" data-icon="" data-iconpos="right" data-position-to="window" data-role="button" data-inline="false" data-theme="b">Proyectar</a>
+        </div>
+        <div style="display:inline-block; width:35%"></div>
+      </div>
+
+  </div>
+
+  <div data-role="footer" style="background-color:#008AEE" data-position="fixed">
+    <h1 style="color:#ffffff">UNAM - CCADET</h1>
+  </div>
+</div> 
+
+  <!-- ********************************* Control Proyectores ********************************* -->
+
+  <div data-role="page" id="projectorsControl" data-position="fixed">
+
+    <div data-role="header" data-position="inline" style="background-color:#">
+      <a href="#pageone" class="ui-btn ui-corner-all ui-shadow ui-icon-back ui-btn-icon-left" data-transition="flip" data-direction="reverse">Atr&aacutes</a>
+      <h1 style="color:#">Control Remoto</h1>
+    </div>
+
+    <div data-role="main" class="ui-content" >
+      <div data-role="popup" id="" data-position-to="" data-overlay-theme="b">
+        <div data-role="header">
+          <h1 id="" style="text-align:center"> </h1>
+        </div>
+        <div data-role="main" class="ui-content">
+          <h2 id="" style="text-align:center"></h2>
+          <a  class="ui-btn ui-corner-all ui-shadow  ui-btn-b " data-rel="back" data-transition="pop" data-position-to="window">Ok</a>
+        </div>
+      </div>
+
+    <div style="display:block">
+
+      <div style="display:inline-block; width:49%; ">
+        <fieldset class="ui-field-contain" style="">
+          <label for="selectProjector2" style="text-align:center"><span style="color:black;"><strong>Proyector</strong></span></label> 
+          <select name="selectProjector2" id="selectProjector2">
+            <!-- Dynamic buttons -->
+          </select>
+        </fieldset>
+      </div>
+
+      <div style="display:inline-block; width:49%">
+        <fieldset class="ui-field-contain">
+            <label for="selectPort2" style="text-align:center"><span style="color:# ;"><strong>Puerto</strong></span></label> 
+            <select name="selectPort2" id="selectPort2">
+              <option value="1"> 1 </option>
+              <option value="2"> 2 </option>
+              <option value="3"> 3 </option>
+              <option value="4"> 4 </option>
+              <option value="5"> 5 </option>
+              <option value="6"> 6 </option>
+              <option value="7"> 7 </option>
+            </select>
+          </fieldset>
+      </div>
+      <br><br><br>
+      <h1 style="color:lightgray; text-align:center ">Botones de control</h1>
+    </div>
+
+    <div data-role="footer" style="background-color:#" data-position="fixed">
+      <h1 style="color:#">UNAM - CCADET</h1>
+    </div>
+  </div> 
+</div>
+
+
+  <!-- ********************************* Cuadros del dialogo ********************************* -->
+
+  <div data-role="page" data-dialog="true" id="configEca_MuralDiallogue2" data-position-to="window" >
+    <div data-role="header">
+      <h1 id="configECA" style="text-align:center"></h1>
+     </div>
+    <div data-role="main" class="ui-content">
+      <h2 id="configECA2" style="text-align:center"></h2>
+      <div>
+        <a id="positionPopup" data-role="button" href="#configEcaMural" class="ui-btn ui-corner-all ui-shadow  ui-btn-b "  data-transition="pop" data-position-to="window" data-inline="false">Ok</a>
+      </div>
+    </div>
+  </div>
+
+  <div data-role="page" data-dialog="true" id="uploadFileToServer" data-position-to="window">
+    <div data-role="header" style="background-color:#008AEE">
+      <a href="#uploadFile" id="backUpF" class="ui-btn ui-btn-a ui-corner-all ui-shadow ui-icon-back ui-btn-icon-left" data-transition="pop" data-direction="reverse">Atr&aacutes</a>
+      <h1 id="hUPFile" style="text-align:center; color:#ffffff">Subir <img id="" src="images/upload-up-arrow-symbol.svg"/></h1>
+    </div>
+
+    <div data-role="main" class="ui-content">
+      <!-- <div class="sendDataDivBtn">
+        <label class="custom-file-upload" style="text-align:center;color:white"> -->
+          <!-- <strong>Click aqu&iacute para cargar archivo</strong> -->
+          <a href="#" id="subirArchivoBtn" class="ui-btn ui-btn-a ui-corner-all ui-shadow" data-transition="pop" data-direction="reverse">Seleccionar Archivo</a>
+          <input type='file' id="fileInput" name="fileName" >
+<!--         </label>
+      </div> -->
+      
+      <h2 id="fileOkUp" style="text-align:center; color:#008AEE">El Archivo se subió correctamente!</h2>
+      <br>
+
+      <label id="diaplyPOPup" style="text-align:center; color:#008AEE"><strong>Nombre del archivo seleccionado:</strong></label>
+      <img id="successIconUpF"   src="" style="margin:0px auto;display:block"/>
+      <label id="displayFile" style="text-align:center;color:green">-</label>
+      <h2 id="noFileSelected" style="color:green; text-align:center">Por favor seleccione un archivo</h2>
+      <br>
+      <img id="loadIconSendFile" src="" style="margin:0px auto;display:block"/>
+      <br>
+      
+      <div style="display:block">
+        
+        <div style="display:inline-block; width:100%;">
+          <a id="fileSent"  class="ui-btn ui-shadow ui-corner-all ui-btn-b" data-theme="b">Subir</a>
+          <a id="fileSentOk" href="#uploadFile"  class="ui-btn ui-shadow ui-corner-all ui-btn-b" data-theme="b">Ok</a>
+        </div>
+        
+      </div>
+
+    </div>
+  </div>
+
+  <div data-role="page" data-dialog="true" id="successUploadFile" data-position-to="window" >
+    <div data-role="header">
+      <h1 id="sULF1" style="text-align:center"></h1>
+     </div>
+    <div data-role="main" class="ui-content">
+      <h2 id="sULF1" style="text-align:center; color:#008AEE"></h2>
+      <div>
+        <a id="" data-role="button" href="#uploadFile" class="ui-btn ui-corner-all ui-shadow  ui-btn-b "  data-transition="pop" data-position-to="window" data-inline="false">Ok</a>
+      </div>
+    </div>
+  </div> 
+ 
+
+    
+
+  <div data-role="page" data-dialog="true" id="downloadFile" data-position-to="window" >
+    <div data-role="header" style="background-color:#008AEE">
+      <a href="#uploadFile" class="ui-btn ui-btn-a ui-corner-all ui-shadow ui-icon-back ui-btn-icon-left" data-transition="pop" data-direction="reverse">Atr&aacutes</a>
+      <h1 id="" style="text-align:center; color:#ffffff">Descargar  <img id="" src="images/download-interface-symbol.svg"/></h1>
+
+     </div>
+    <div data-role="main" class="ui-content">
+      <p id="" style="text-align:center; color:#008AEE"><strong>Presiona el nombre del archivo para iniciar descarga:</strong></p>
+      <h2 id="textDisplayFilesDL" style="color:lightgray; text-align:center"> </h2>
+      <p  id="textDisplayFilesDL2" style="color:lightgray; text-align:center"> </p>
+
+      <div id="displayDownloads">
+        <!-- Dynamic buttons for download files -->
+      </div>
+    </div>
+  </div> 
+
+
+
+  <div data-role="page" data-dialog="true" id="editProj" data-position-to="window" >
+    <div data-role="header" style="background-color:#ff4d4d">
+      <a href="#configProyectores" class="ui-btn ui-btn-a ui-corner-all ui-shadow ui-icon-back ui-btn-icon-left" data-transition="flip" data-direction="reverse">Atr&aacutes</a>
+      <h1 id="" style="text-align:center; color:#ffffff">Edit Proyector</h1>
+
+     </div>
+    <div data-role="main" class="ui-content">
+      <form method="get" action="" id="dataForProjectors">
+
+          <label for="proyectorName"><strong>Marca-Modelo:</strong></label>
+          <input type="text" name="proyectorName" id="proyectorNameEdit" class="cmdP" value="" placeholder="Marca-Modelo" data-clear-btn="true"/>
+          <label for="onCmd"><strong>Comando de encendido:</strong></label>
+          <input type="text" name="onCmd" id="onCmdEdit" value="" placeholder="Ej. 1A,2B,3C,4D" data-clear-btn="true"/>
+          <label for="offCmd"><strong>Comando de apagado:</strong></label>
+          <input type="text" name="offCmd" id="offCmdEdit" value="" placeholder="Ej. 1A,2B,3C,4D" data-clear-btn="true"/>
+          <label for="onAckCmd"><strong>Comando respuesta para encendido:</strong></label>
+          <input type="text" name="onAckCmd" id="onAckCmdEdit" value="" placeholder="Ej. 1A,2B,3C,4D" data-clear-btn="true"/>
+          <label for="offAckCmd"><strong>Comando respuesta para apagado:</strong></label>
+          <input type="text" name="offAckCmd" id="offAckCmdEdit" value="" placeholder="Ej. 1A,2B,3C,4D" data-clear-btn="true"/>
+          <label for="baudRate"><strong>BaudRate:</strong></label>
+          <input type="text" name="baudRate" id="baudRateEdit" value="" placeholder="Ej. 19200" data-clear-btn="true"/>
+
+        </form>
+
+        <br>
+      <div style="display:block">
+        <div style="display:inline-block; width:20%"></div>
+        <div style="display:inline-block; width:60%;">
+          <a href="#" id="" class="ui-btn ui-btn-b ui-corner-all ui-shadow ui-icon-gear ui-btn-icon-right" data-transition="flip" data-direction="reverse">Editar</a>
+        </div>
+        <div style="display:inline-block; width:20%"></div>
+      </div>
+    </div>
+
+    </div>
+
+  </div> 
+</body>
+</html>
+
+
+
+
