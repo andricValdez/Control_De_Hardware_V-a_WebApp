@@ -12,7 +12,7 @@
     "ejs": "~2.3.3",
     "express": "~4.13.1",
     "jsonfile": "^2.2.3",
-    "mongodb": "^2.2.11",
+    "mongodb": "^3.6.1",
     "morgan": "~1.6.1",
     "node-cmd": "^1.1.1",
     "node-libnmap": "^0.2.15",
